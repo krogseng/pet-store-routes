@@ -5,6 +5,8 @@ Create a pet store app that uses react-router to manager page state!
 
 You can either create a backend, or just hard code source data in the app. Use of `redux` for state management is up to you.
 
+Implementation of the route-specific components should be to spec, but can be minimal.
+
 # Routes and Wireframe of the App 
 
 ![fullsizerender 2](https://cloud.githubusercontent.com/assets/478864/24019680/31606d80-0a56-11e7-8c0b-67e27e829f93.jpg)
