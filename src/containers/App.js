@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Home from '../components/Home';
 import Stores from '../components/Stores';
+import Store from '../components/Store';
 
 
 class App extends Component {
@@ -42,7 +43,15 @@ class App extends Component {
       <div>
         <Route exact path='/' component={Home} />
         <Route path='/stores' render={(props) => (
-          <Stores { ...props } stores={this.state.stores} pets={this.state.pets} />
+          <Stores { ...props }
+            stores={this.state.stores}
+            pets={this.state.pets} />
+        )} />
+
+        <Route path='/store/:id' render={(props) => (
+          <Store { ...props }
+            stores={this.state.stores}
+            pets={this.state.pets} />
         )} />
       </div>
     );
