@@ -8,8 +8,12 @@ function Stores(props) {
             <ul>
                 {props.stores.map(store => {
                     return (
-                        <li key={store.id}>
-                            <Link to={{ pathname: `/store/${store.id}`, state: { location: store.location } }}>
+                        <li key={store.store_id}>
+                            <Link to={{
+                                pathname: `/store/${store.store_id}`,
+                                state: [{ location: store.location },
+                                { id: store.store_id }]
+                            }}>
                                 {store.location}
                             </Link>
                         </li>
