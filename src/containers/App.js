@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import Home from '../components/Home';
 import Stores from '../components/Stores';
 import Store from '../components/Store';
@@ -71,6 +71,9 @@ class App extends Component {
   render() {
     return (
       <div>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/stores">Stores</NavLink>
+
         <Route exact path='/' component={Home} />
         <Route path='/stores' render={(props) => (
           <Stores { ...props }
