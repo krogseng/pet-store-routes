@@ -38,23 +38,22 @@ function Store(props) {
     const pets = props.pets;
     const storeId = props.match.params.store_id;
     const selected = props.selectedValue;
-    console.log('select', selected);
+    const storeHere = props.stores.filter(store => {
+        return store.store_id === +storeId;
+    })
+    console.log('store ', storeHere);
     return (
-        <div>
+        <div className='address'>
             <h1>Your Pet Store has your new pet!
             </h1>
-            <p>Street Addresss</p>
-            <div>
-                <select id="petTypes" name="petType">
-                    <option value="all" defaultValue>All</option>
-                    <option value="sloth">Sloths</option>
-                    <option value="parakeet">Parakeets</option>
-                    <option value="cat">Cats</option>
-                    <option value="dog">Dogs</option>
-                </select>
+            <div className='address'>
+                <address>{storeHere[0].location}</address>
+                <address>{storeHere[0].street}</address>
+                <address>{storeHere[0].city}</address>
 
             </div>
-            <Route path={props.match.url} render={(props) => {
+
+            <Route exact path={props.match.url} render={(props) => {
                 return <Pets { ...props } pets={pets} storeId={+storeId} />
             }}
             />

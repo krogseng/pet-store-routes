@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Stores(props) {
     return (
-        <div>
+        <div className='outermost'>
             <h1>Pet Stores in Your Town</h1>
             <ul>
                 {props.stores.map(store => {
@@ -14,7 +14,11 @@ function Stores(props) {
                                 state: [{ location: store.location },
                                 { id: store.store_id }]
                             }}>
-                                {store.location}
+                                <div className='address'>
+                                    <address>{store.location}</address>
+                                    <address>{store.street}</address>
+                                    <address>{store.city}</address>
+                                </div>
                             </Link>
                         </li>
                     )

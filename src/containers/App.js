@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, Switch, BrowserHistory } from 'react-router-dom';
 import Home from '../components/Home';
 import Stores from '../components/Stores';
 import Store from '../components/Store';
+import '../styles/styles.css';
 
 
-
+const NoMatch = ({ location }) => (
+  <div><h3>No match for <code>{location.pathname}</code></h3></div>
+)
 
 class App extends Component {
   constructor(props) {
@@ -13,15 +16,21 @@ class App extends Component {
     this.state = {
       stores: [{
         store_id: 1,
-        location: 'downtown',
+        location: 'Downtown',
+        street: '1234 Main Street',
+        city: 'Yourtown'
       },
       {
         store_id: 2,
-        location: 'midtown',
+        location: 'Midtown',
+        street: '4533 West Houston Avenue',
+        city: 'Yourtown'
       },
       {
         store_id: 3,
-        location: 'uptown',
+        location: 'Uptown',
+        street: '89982 Outer Suburbs',
+        city: 'Yourtown'
       }],
       pets: [
         {
@@ -70,22 +79,26 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/stores">Stores</NavLink>
+      <div className='outermost'>
+        <div className='navbar'>
+          <NavLink className='navlink' to="/">Home</NavLink>
+          <NavLink className='navlink' to="/stores">Stores</NavLink>
+        </div>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/stores' render={(props) => (
+            <Stores { ...props }
+              stores={this.state.stores}
+              pets={this.state.pets} />
+          )} />
 
-        <Route exact path='/' component={Home} />
-        <Route path='/stores' render={(props) => (
-          <Stores { ...props }
-            stores={this.state.stores}
-            pets={this.state.pets} />
-        )} />
-
-        <Route path='/store/:store_id' render={(props) => (
-          <Store { ...props }
-            stores={this.state.stores}
-            pets={this.state.pets} />
-        )} />
+          <Route path='/store/:store_id' render={(props) => (
+            <Store { ...props }
+              stores={this.state.stores}
+              pets={this.state.pets} />
+          )} />
+          <Route component={NoMatch} />
+        </Switch>
       </div>
     );
   }
